@@ -13,6 +13,7 @@ else:
 
 try:
     import vpython  # noqa
+    vpython.version
 except ImportError:
     HAVE_VPYTHON = False
 else:
