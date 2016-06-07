@@ -12,6 +12,13 @@ else:
     HAVE_BPYTHON = True
 
 try:
+    import vpython  # noqa
+except ImportError:
+    HAVE_VPYTHON = False
+else:
+    HAVE_VPYTHON = True
+
+try:
     from prompt_toolkit.contrib.repl import embed as ptpython_embed
 except ImportError:
     HAVE_PTPYTHON = False
@@ -116,6 +123,13 @@ def ipython_version():
         return version_info
     else:
         return None
+
+
+def run_vpython_shell(locals, globals, first_time):
+    ns = SetPropagatingDict([locals, globals], locals)
+
+    import vpython.cli
+    vpython.cli.main(locals_=ns)
 
 
 def run_ipython_shell_v10(locals, globals, first_time):

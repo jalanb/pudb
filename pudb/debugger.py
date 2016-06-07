@@ -1780,6 +1780,8 @@ class DebuggerUI(FrameVarInfoKeeper):
                 runner = shell.run_bpython_shell
             elif CONFIG["shell"] == "ptpython" and shell.HAVE_PTPYTHON:
                 runner = shell.run_ptpython_shell
+            elif CONFIG["shell"] == "vpython" and shell.HAVE_VPYTHON:
+                runner = shell.run_vpython_shell
             else:
                 runner = shell.run_classic_shell
 
