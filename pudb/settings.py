@@ -484,7 +484,7 @@ def load_breakpoints():
 
 def save_breakpoints(bp_list):
     """
-    :arg bp_list: a list of tuples `(file_name, line)`
+    :arg bp_list: a list of tuples `(file_name, line, condition)`
     """
 
     save_path = get_breakpoints_file_name()
