@@ -8,7 +8,7 @@ might look familiar.
 
 Here's a screenshot:
 
-.. image:: http://tiker.net/pub/pudb-screenshot.png
+.. image:: https://tiker.net/pub/pudb-screenshot.png
 
 You may watch a `screencast <http://vimeo.com/5255125>`_, too.
 
@@ -39,7 +39,7 @@ Features
 
 * IPython integration (see `wiki <http://wiki.tiker.net/PuDB>`_)
 
-* Should work with Python 2.4 and newer, including Python 3.
+* Should work with Python 2.6 and newer, including Python 3.
 
 Installing
 ----------

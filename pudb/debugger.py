@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from __future__ import division
+from __future__ import absolute_import, division, print_function
 import urwid
 import bdb
 import sys
@@ -1375,10 +1375,10 @@ class DebuggerUI(FrameVarInfoKeeper):
                         mod_name = widget.base_widget.get_text()[0]
                         mod = sys.modules[mod_name]
                         if PY3:
-                            reload(mod)  # noqa (undef on Py3)
-                        else:
                             import importlib
                             importlib.reload(mod)
+                        else:
+                            reload(mod)  # noqa (undef on Py3)
 
                         self.message("'%s' was successfully reloaded." % mod_name)
 
@@ -1774,11 +1774,11 @@ class DebuggerUI(FrameVarInfoKeeper):
             curframe = self.debugger.curframe
 
             import pudb.shell as shell
-            if shell.HAVE_IPYTHON and CONFIG["shell"] == "ipython":
+            if CONFIG["shell"] == "ipython" and shell.have_ipython():
                 runner = shell.run_ipython_shell
-            elif shell.HAVE_BPYTHON and CONFIG["shell"] == "bpython":
+            elif CONFIG["shell"] == "bpython" and shell.HAVE_BPYTHON:
                 runner = shell.run_bpython_shell
-            elif shell.HAVE_PTPYTHON and CONFIG["shell"] == "ptpython":
+            elif CONFIG["shell"] == "ptpython" and shell.HAVE_PTPYTHON:
                 runner = shell.run_ptpython_shell
             else:
                 runner = shell.run_classic_shell
@@ -2095,7 +2095,7 @@ class DebuggerUI(FrameVarInfoKeeper):
                 self.message("Package 'pygments' not found. "
                         "Syntax highlighting disabled.")
 
-        WELCOME_LEVEL = "e026"  # noqa
+        WELCOME_LEVEL = "e027"  # noqa
         if CONFIG["seen_welcome"] < WELCOME_LEVEL:
             CONFIG["seen_welcome"] = WELCOME_LEVEL
             from pudb import VERSION
@@ -2111,6 +2111,10 @@ class DebuggerUI(FrameVarInfoKeeper):
                     "If you're new here, welcome! The help screen "
                     "(invoked by hitting '?' after this message) should get you "
                     "on your way.\n"
+
+                    "\nChanges in version 2016.2:\n\n"
+                    "- UI improvements for disabled breakpoints.\n"
+                    "- Bug fixes.\n"
 
                     "\nChanges in version 2016.1:\n\n"
                     "- Fix module browser on Py3.\n"
