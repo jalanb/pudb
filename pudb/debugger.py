@@ -1539,7 +1539,7 @@ class DebuggerUI(FrameVarInfoKeeper):
             if PY3:
                 from io import StringIO
             else:
-                from cStringIO import StringIO
+                from six.moves import cStringIO as StringIO
 
             sys.stdin = None
             sys.stderr = sys.stdout = StringIO()
